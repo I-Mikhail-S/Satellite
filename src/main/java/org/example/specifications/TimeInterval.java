@@ -1,5 +1,5 @@
 package org.example.specifications;
 
-public class Time {
+public class TimeInterval extends Time{
 
 }
