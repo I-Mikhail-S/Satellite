@@ -1,4 +1,6 @@
-package org.example.specifications;
+package org.example.utils;
+
+import org.example.utils.MyCalendar;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;

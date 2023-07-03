@@ -1,4 +1,4 @@
-package org.example.specifications;
+package org.example.utils;
 
 import java.util.Calendar;
 

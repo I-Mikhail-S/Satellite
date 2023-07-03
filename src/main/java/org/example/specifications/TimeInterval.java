@@ -1,6 +1,6 @@
 package org.example.specifications;
 
-import java.util.Calendar;
+import org.example.utils.Time;
 
 public class TimeInterval{
     private Time start;
