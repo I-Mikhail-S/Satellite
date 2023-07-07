@@ -11,29 +11,21 @@ public class DatabaseDAO  {
     private Connection conn;
 
     public DatabaseDAO() throws ClassNotFoundException {
+        Parser parser = new Parser("");
         try {
             Class.forName("com.mysql.cj.jdbc.Driver").getDeclaredConstructor().newInstance();
             try (Connection conn = DriverManager.getConnection(URL, USER, PASSWORD)) {
 
                 String sql = "INSERT INTO ekater (date,name) VALUES (?, ?) ";
-                Parser parser = new Parser();
                 PreparedStatement statement = conn.prepareStatement(sql);
                 for (int i = 0; i < 99; i++) {
-                    statement.setString(1, parser.parse("Ekaterindurg.txt").get(i).substring(0, 19));
-                    statement.setString(2, parser.parse("Ekaterindurg.txt").get(i).substring(20, 33));
-                    int rowsInserted = statement.executeUpdate();
+                    statement.setString(1,parser.getName().get(i));
+                    statement.setString(1,parser.getDate().get(i));
                 }
             } catch (Exception ex) {
                 System.out.println("Connection failed...");
-                System.out.println(ex);
             }
-        } catch (InvocationTargetException e) {
-            throw new RuntimeException(e);
-        } catch (InstantiationException e) {
-            throw new RuntimeException(e);
-        } catch (IllegalAccessException e) {
-            throw new RuntimeException(e);
-        } catch (NoSuchMethodException e) {
+        } catch (InvocationTargetException | NoSuchMethodException | InstantiationException | IllegalAccessException e) {
             throw new RuntimeException(e);
         }
     }
