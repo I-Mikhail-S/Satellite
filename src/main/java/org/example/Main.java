@@ -1,19 +1,26 @@
 package org.example;
 
-import org.example.entities.Satellite;
-import org.example.utils.DatabaseDAO;
-import org.example.utils.Parser;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.google.gson.Gson;
 
+import org.example.utils.*;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
+import java.io.FileReader;
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+
 
 public class Main {
-
-    public static void main(String[] args) throws IOException, ClassNotFoundException, NoSuchMethodException, InstantiationException, IllegalAccessException {
-        DatabaseDAO databaseDAO = new DatabaseDAO();
-        Parser parser = new Parser();
-        for (int i = 0; i < 99; i++) {
-            System.out.println(parser.parse("Moscow.txt").get(i).substring(0,19)+ parser.parse("Moscow.txt").get(i).substring(20, 33));
-        }
+    public static String readFileAsString(String file)throws Exception
+    {
+        return new String(Files.readAllBytes(Paths.get(file)));
+    }
+    public static void main(String[] args) throws Exception {
+        JSONHelper jsonHelper = new JSONHelper();
 
     }
 }
