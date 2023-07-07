@@ -1,10 +1,7 @@
 package org.example.utils;
 
-
-
 import java.io.*;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 public class Parser {
@@ -16,8 +13,6 @@ public class Parser {
     public static final int countSymbolsTime = 8;
     public static final int countSymbolsDate = 10;
     public static  int height = 99;
-
-
 
     public List<String> parse(String txt) throws IOException {
         List<String> all= new ArrayList<>();
