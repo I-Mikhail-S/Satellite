@@ -19,4 +19,7 @@ public class Time {
         return calendar;
     }
 
+    public SimpleDateFormat getFormat() {
+        return format;
+    }
 }

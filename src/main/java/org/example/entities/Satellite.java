@@ -10,7 +10,7 @@ public class Satellite {
     private Location location;
     private int speed;
     private DataSize dataSize;
-    private TimeInterval timeInterval; // пока что не совсем понятно куда это
+    private TimeInterval timeInterval;
     private AgentSatellite agentSatellite;
 
     public Satellite () {

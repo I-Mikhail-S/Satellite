@@ -25,17 +25,24 @@
   <component name="DBNavigator.Project.ExecutionManager">
     <retain-sticky-names value="false" />
   </component>
+<<<<<<< HEAD
   <component name="DBNavigator.Project.FileConnectionMappingManager">
     <mapping file-url="file://$PROJECT_DIR$/base/towns_ekater.sql" connection-id="07d87103-4c87-43af-8eb0-f7f11dce3aa9" session-id="MAIN" current-schema="towns" />
   </component>
+=======
+>>>>>>> 3f06164c7236b7a412c74d331b90367e62add229
   <component name="DBNavigator.Project.ObjectQuickFilterManager">
     <last-used-operator value="EQUAL" />
     <filters />
   </component>
   <component name="DBNavigator.Project.ScriptExecutionManager" clear-outputs="true">
+<<<<<<< HEAD
     <recently-used-interfaces>
       <mapping database-type="MYSQL" interface-id="DEFAULT" />
     </recently-used-interfaces>
+=======
+    <recently-used-interfaces />
+>>>>>>> 3f06164c7236b7a412c74d331b90367e62add229
   </component>
   <component name="DBNavigator.Project.Settings">
     <connections>
