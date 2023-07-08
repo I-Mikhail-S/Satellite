@@ -1,12 +1,16 @@
 package org.example.utils;
 
+import com.mysql.cj.conf.ConnectionUrlParser;
+import org.example.workWithDB.AllParser;
+
 import java.io.*;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
-public class Parser {
-    //"for example: 2023-06-30 22:43:17 satellite 1-6"
-
+public class Parser implements AllParser {
+    private List<String> date;
+    private List<String> name;
+    private Map<String,String> contain = new TreeMap<>();
+    private String file;
     public static final int countSymbolsAll = 33;
     public static final int countSymbolsSputnik = 13;
     public static final int countSymbolsDateAndTime = 20;
@@ -14,10 +18,25 @@ public class Parser {
     public static final int countSymbolsDate = 10;
     public static  int height = 99;
 
-    public List<String> parse(String txt) throws IOException {
-        List<String> all= new ArrayList<>();
+    public Parser(String file) {
+        this.file = file;
+    }
 
-        try(BufferedReader br = new BufferedReader(new FileReader(txt))) {
+    public List<String> getDate() {
+        return date;
+    }
+
+    public List<String> getName() {
+        return name;
+    }
+
+    public Map<String, String> getContain() {
+        return contain;
+    }
+
+    public List<String> parse(String file) {
+        List<String> all= new ArrayList<>();
+         try(BufferedReader br = new BufferedReader(new FileReader(file))) {
             StringBuilder sb = new StringBuilder();
             String line = br.readLine();
 
@@ -30,7 +49,26 @@ public class Parser {
                 }
                 line = br.readLine();
             }
-        }
+        } catch (IOException e) {
+             e.printStackTrace();
+         }
+         for (int i = 0; i < 99; i++) {
+             date.add(all.get(i).substring(0, 19));
+             name.add(String.valueOf(all.get(i).charAt(32)));
+         }
         return  all;
     }
+/*
+    public Map<String,String> date() {
+        try {
+            for (int i = 0; i < 99; i++) {
+                date.add(parse().get(i).substring(0, 19));
+                name.add(String.valueOf(parse().get(i).charAt(32)));
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+       return contain;
+    }*/
+
 }
