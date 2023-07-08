@@ -2,40 +2,29 @@ package org.example.entities;
 
 
 import org.example.specifications.DataSize;
-import org.example.specifications.Location;
 import org.example.specifications.TimeInterval;
 
 // Наземная станция, приёмник
 public class Station {
-    private String name;
-    private Location location;
-    private TimeInterval timeInterval;
+    private int id; // (Moscow - 1; Ekaterinburg - 2; Ulan-Ude - 3)
     private DataSize dataSize;
+    private TimeInterval timeInterval;
 
     public Station() {
     }
 
-    public Station(String name, Location location, TimeInterval timeInterval) {
-        this.name = name;
-        this.location = location;
+    public Station(int id, TimeInterval timeInterval) {
+        this.id = id;
         this.timeInterval = timeInterval;
         this.dataSize = new DataSize(0);
     }
 
-    public String getName() {
-        return name;
+    public int getId() {
+        return id;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public Location getLocation() {
-        return location;
-    }
-
-    public void setLocation(Location location) {
-        this.location = location;
+    public void setId(int id) {
+        this.id = id;
     }
 
     public TimeInterval getTimeInterval() {
@@ -57,8 +46,7 @@ public class Station {
     @Override
     public String toString() {
         return "Station{" +
-                "name='" + name + '\'' +
-                ", location=" + location +
+                "id='" + id + '\'' +
                 ", timeInterval=" + timeInterval +
                 ", dataSize=" + dataSize +
                 '}';

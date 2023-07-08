@@ -4,7 +4,7 @@ import java.util.Calendar;
 
 public class MyCalendar {
     private int year;
-    private int month; // константное число!!!!! (2 - пн, 3 - вт и тд)
+    private int month;
     private int day;
     private int hour;
     private int minute;

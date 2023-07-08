@@ -25,7 +25,7 @@ public class ParserSecond {
                         all.add(String.valueOf(line.charAt(14) + line.charAt(15) + line.charAt(16)));
                     }
                 } else if (line.contains("\"sat\"")) {
-                    all.add(line.substring(16, 29));
+                    all.add(String.valueOf(line.charAt(29)));
                 } else if (pattern.matcher(line).find()) {
                     all.add(line.substring(14, 30));
                 }
