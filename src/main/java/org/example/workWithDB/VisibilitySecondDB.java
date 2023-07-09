@@ -14,38 +14,38 @@ public class VisibilitySecondDB implements InterfaceCRUD{
     public static void completion(List<String> listData) {
         try {
             for (int i = 1; i < 4; i++) {
-                DatabaseDAO.statement.executeUpdate("INSERT INTO schema.ground_station (id) VALUES (" + i + ")");
+                DatabaseDAO.statement.executeUpdate("INSERT INTO schema.visibility (id) VALUES (" + i + ")");
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);
         } finally {
-            System.out.println("\"completion.ground_station\" отработал.");
+            System.out.println("\"completion.visibility\" отработал.");
         }
     }
 
     public static void deleted(int id) {
         try {
-            DatabaseDAO.statement.executeUpdate("DELETE FROM schema.ground_station WHERE id = " + id);
+            DatabaseDAO.statement.executeUpdate("DELETE FROM schema.visibility WHERE id = " + id);
         } catch (SQLException e) {
             throw new RuntimeException(e);
         } finally {
-            System.out.println("\"deleted.ground_station\" отработал.");
+            System.out.println("\"deleted.visibility\" отработал.");
         }
     }
 
     public static void deletedAll() {
         try {
-            DatabaseDAO.statement.executeUpdate("DELETE FROM schema.ground_station");
+            DatabaseDAO.statement.executeUpdate("DELETE FROM schema.visibility");
         } catch (SQLException e) {
             throw new RuntimeException(e);
         } finally {
-            System.out.println("\"deletedAll.ground_station\" отработал.");
+            System.out.println("\"deletedAll.visibility\" отработал.");
         }
     }
 
     public static void report() {
         try {
-            resultSet = DatabaseDAO.statement.executeQuery("SELECT * FROM schema.ground_station");
+            resultSet = DatabaseDAO.statement.executeQuery("SELECT * FROM schema.visibility");
             while (resultSet.next()) {
                 System.out.println(
                         resultSet.getRow() + ". " +
@@ -60,7 +60,7 @@ public class VisibilitySecondDB implements InterfaceCRUD{
         } catch (SQLException e) {
             throw new RuntimeException(e);
         } finally {
-            System.out.println("\"report.ground_station\" отработал.");
+            System.out.println("\"report.visibility\" отработал.");
         }
     }
 }
