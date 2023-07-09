@@ -13,8 +13,23 @@ public class VisibilitySecondDB implements InterfaceCRUD{
 
     public static void completion(List<String> listData) {
         try {
-            for (int i = 1; i < 4; i++) {
-                DatabaseDAO.statement.executeUpdate("INSERT INTO schema.visibility (id) VALUES (" + i + ")");
+            String pointId = "-1";
+            String satelliteId = "-1";
+            String startTime = "-1";
+            String endTime = "-1";
+            for (String helpVariable : listData) {
+                if (helpVariable.contains("!")) {
+                    pointId = helpVariable.replace("!", "");
+                } else if (Character.isDigit(helpVariable.charAt(0)) && helpVariable.length() < 4) {
+                    satelliteId = helpVariable;
+                } else if (helpVariable.length() > 4 && helpVariable.contains("s")) {
+                    startTime = helpVariable.replace("s", "");
+                } else if (helpVariable.length() > 4) {
+                    endTime = helpVariable;
+                    DatabaseDAO.statement.executeUpdate("INSERT INTO schema.visibility " +
+                            "(id_area_of_interest, id_spacecraft, start_time, end_time) VALUES ('" +
+                            pointId + "', '" + satelliteId + "', '" + startTime + "', '" + endTime + "')");
+                }
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);

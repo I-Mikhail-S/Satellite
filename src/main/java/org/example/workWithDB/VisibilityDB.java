@@ -9,57 +9,63 @@ import java.sql.SQLException;
 
 public class VisibilityDB implements InterfaceCRUD{
     private static ResultSet resultSet;
-    private final AllParser parserOne;
-    private final AllParser parserTwo;
+    private  static Parser parserOne;
 
     public VisibilityDB() {
         parserOne = new Parser();
-        parserTwo = new ParserSecond();
     }
 
-    public static void completion(String file) {
+    public static void completion(String file,int idTown) {
         try {
-            for (int i = 1; i < 1; i++) {
-                DatabaseDAO.statement.executeUpdate("INSERT INTO schema.spacecraft (id,stat_time,end_time,id_ground_station,id_spacecraft,) VALUES (" + i + ")");
+            for (int i = 0; i < parserOne.parse(file).size(); i++) {
+                DatabaseDAO.statement.executeUpdate("INSERT INTO schema.visibility (start_time,end_time,id_ground_station,id_spacecraft) VALUES ('" +
+                        parserOne.getDateEnd().get(i) + "', '" +parserOne.getDateStart().get(i) + "', '" + idTown + "' , '" + parserOne.getName().get(i) + "' )");
             }
-        } catch (SQLException e) {
+            } catch (SQLException e) {
             throw new RuntimeException(e);
         } finally {
-            System.out.println("\"completion.spacecraft\" отработал.");
+            System.out.println("\"completion.visibility\" отработал.");
         }
     }
 
     public static void deleted(int id) {
         try {
-            DatabaseDAO.statement.executeUpdate("DELETE FROM schema.spacecraft WHERE id = " + id);
+            DatabaseDAO.statement.executeUpdate("DELETE FROM schema.visibility WHERE id = " + id);
         } catch (SQLException e) {
             throw new RuntimeException(e);
         } finally {
-            System.out.println("\"deleted.spacecraft\" отработал.");
+            System.out.println("\"deleted.visibility\" отработал.");
         }
     }
 
     public static void deletedAll() {
         try {
-            DatabaseDAO.statement.executeUpdate("DELETE FROM schema.spacecraft");
+            DatabaseDAO.statement.executeUpdate("DELETE FROM schema.visibility");
         } catch (SQLException e) {
             throw new RuntimeException(e);
         } finally {
-            System.out.println("\"deletedAll.spacecraft\" отработал.");
+            System.out.println("\"deletedAll.visibility\" отработал.");
         }
     }
 
     public static void report() {
         try {
-            resultSet = DatabaseDAO.statement.executeQuery("SELECT * FROM schema.spacecraft");
+            resultSet = DatabaseDAO.statement.executeQuery("SELECT * FROM schema.visibility");
             while (resultSet.next()) {
-                System.out.println(resultSet.getRow() + ". " +
-                        resultSet.getInt("id") + ';');
+                System.out.println(
+                        resultSet.getRow() + ". " +
+                                resultSet.getInt("id") + ", " +
+                                resultSet.getInt("id_ground_station") + ", " +
+                                resultSet.getInt("id_spacecraft") + ", " +
+                                resultSet.getInt("id_area_of_interest") + ", " +
+                                resultSet.getString("start_time") + ", " +
+                                resultSet.getString("end_time") + '.'
+                );
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);
         } finally {
-            System.out.println("\"report.spacecraft\" отработал.");
+            System.out.println("\"report.visibility\" отработал.");
         }
     }
 }

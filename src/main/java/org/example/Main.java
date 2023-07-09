@@ -1,16 +1,26 @@
 package org.example;
 
+
+import org.example.utils.DatabaseDAO;
 import org.example.utils.Parser;
 import org.example.utils.ParserSecond;
+import org.example.workWithDB.AreaOfInterestDB;
+import org.example.workWithDB.VisibilityDB;
+import org.example.workWithDB.VisibilitySecondDB;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class Main {
+
     public static void main(String[] args) {
 
         ParserSecond parserSecond = new ParserSecond();
-        for (String helpVariable : parserSecond.parse("visible.txt")) {
-            if (helpVariable.length() < 6)
-                System.out.println(helpVariable);
-        }
+        VisibilitySecondDB visibilitySecondDB = new VisibilitySecondDB();
+        List<String> listData = new ArrayList<>(parserSecond.parse("visible.txt"));
+        visibilitySecondDB.completion(listData);
+        visibilitySecondDB.report();
+
 
     }
 }

@@ -15,6 +15,15 @@ public class Parser implements AllParser {
     public List<String> getName() {
         return name;
     }
+
+    public List<String> getDateStart() {
+        return dateStart;
+    }
+
+    public List<String> getDateEnd() {
+        return dateEnd;
+    }
+
     @Override
     public List<String> parse(String file) {
         List<String> all = new ArrayList<>();
