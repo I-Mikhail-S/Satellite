@@ -20,15 +20,7 @@ public class ParserSecond implements AllParser {
             Pattern pattern = Pattern.compile("(.*).23 (.*)"); //dd-MM-yy hh:mm:ss
             while (line != null){
                 if (line.contains("\"point\"")) {
-                    if (line.charAt(15) == '\"') { // for example: {    "point": "0"} считываем номер РИ
-                        all.add(String.valueOf(line.charAt(14)));
-                    } else if (line.charAt(16) == '\"') {
-                        all.add(String.valueOf(line.charAt(14) + line.charAt(15)));
-                    } else if (line.charAt(17) == '\"'){
-                        all.add(String.valueOf(line.charAt(14) + line.charAt(15) + line.charAt(16)));
-                    } else if (line.charAt(18) == '\"') {
-                        all.add(String.valueOf(line.charAt(14) + line.charAt(15) + line.charAt(16) + line.charAt(17)));
-                    }
+                    all.add(line.replaceAll("\\D", " ").replace(" ", ""));
                 } else if (line.contains("\"sat\"")) {
                     all.add(String.valueOf(line.charAt(28)));
                 } else if (pattern.matcher(line).find()) {

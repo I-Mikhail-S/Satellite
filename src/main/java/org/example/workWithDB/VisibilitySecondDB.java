@@ -4,21 +4,17 @@ import org.example.utils.DatabaseDAO;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.List;
 
-public class StationDB implements InterfaceCRUD{
+public class VisibilitySecondDB implements InterfaceCRUD{
     private static ResultSet resultSet;
 
-    public StationDB() {}
+    public VisibilitySecondDB() {}
 
-    public static void completion() {
+    public static void completion(List<String> listData) {
         try {
-<<<<<<< HEAD
             for (int i = 1; i < 4; i++) {
-                DatabaseDAO.statement.executeUpdate("INSERT INTO pracktica.ground_station (id) VALUES (" + i + ")");
-=======
-            for (int i = 1; i < 4; i++) { // всего 3 наземных станции (1 - Москва; 2 - Екатеринбург; 3 - Улан-Уде)
                 DatabaseDAO.statement.executeUpdate("INSERT INTO schema.ground_station (id) VALUES (" + i + ")");
->>>>>>> 3c1d791dec2d1915fe9736e4c9d45eec3cd2d7a1
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);
@@ -51,8 +47,15 @@ public class StationDB implements InterfaceCRUD{
         try {
             resultSet = DatabaseDAO.statement.executeQuery("SELECT * FROM schema.ground_station");
             while (resultSet.next()) {
-                System.out.println(resultSet.getRow() + ". " +
-                        resultSet.getInt("id") + ';');
+                System.out.println(
+                        resultSet.getRow() + ". " +
+                        resultSet.getInt("id") + ", " +
+                        resultSet.getInt("id_ground_station") + ", " +
+                        resultSet.getInt("id_spacecraft") + ", " +
+                        resultSet.getInt("id_area_of_interest") + ", " +
+                        resultSet.getString("start_time") + ", " +
+                        resultSet.getString("end_time") + '.'
+                        );
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);

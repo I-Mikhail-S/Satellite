@@ -17,8 +17,13 @@ public class VisibilityDB implements InterfaceCRUD{
 
     public static void completion(String file,int idTown) {
         try {
+<<<<<<< HEAD
             for (int i = 1; i < parserOne.parse(file).size()+1; i++) {
                 DatabaseDAO.statement.executeUpdate("INSERT INTO pracktica.visibility (id_ground_station,id_spacecraft,start_time,end_time) VALUES ('" + parserOne.getDateStart().get(i) + "', '" +  parserOne.getDateEnd().get(i)  + "', '" + idTown + "' , '" + parserOne.getName().get(i) + "' )");
+=======
+            for (int i = 1; i < 1; i++) {
+                DatabaseDAO.statement.executeUpdate("INSERT INTO schema.spacecraft (id,stat_time,end_time,id_ground_station,id_spacecraft,) VALUES (" + i + ")");
+>>>>>>> 3c1d791dec2d1915fe9736e4c9d45eec3cd2d7a1
             }
 
         } catch (SQLException e) {

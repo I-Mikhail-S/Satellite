@@ -7,6 +7,7 @@ import java.io.*;
 import java.util.*;
 
 public class Parser implements AllParser {
+
     private List<String> dateStart = new ArrayList<>();
     private List<String> dateEnd = new ArrayList<>();
     private List<String> name = new ArrayList<>();
@@ -55,5 +56,6 @@ public class Parser implements AllParser {
         }
         return all;
     }
+
 }
 
