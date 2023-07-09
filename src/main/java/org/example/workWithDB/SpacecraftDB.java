@@ -13,7 +13,7 @@ public class SpacecraftDB implements InterfaceCRUD{
     public static void completion() {
         try {
             for (int i = 1; i < 9; i++) {
-                DatabaseDAO.statement.executeUpdate("INSERT INTO schema.spacecraft (id) VALUES (" + i + ")");
+                DatabaseDAO.statement.executeUpdate("INSERT INTO pracktica.spacecraft (id) VALUES (" + i + ")");
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);

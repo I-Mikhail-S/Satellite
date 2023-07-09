@@ -9,19 +9,18 @@ import java.sql.SQLException;
 
 public class VisibilityDB implements InterfaceCRUD{
     private static ResultSet resultSet;
-    private final AllParser parserOne;
-    private final AllParser parserTwo;
+    private  static Parser parserOne;
 
     public VisibilityDB() {
         parserOne = new Parser();
-        parserTwo = new ParserSecond();
     }
 
-    public static void completion(String file) {
+    public static void completion(String file,int idTown) {
         try {
-            for (int i = 1; i < ; i++) {
-                DatabaseDAO.statement.executeUpdate("INSERT INTO schema.spacecraft (id,stat_time,end_time,id_ground_station,id_spacecraft,) VALUES (" + i + ")");
+            for (int i = 1; i < parserOne.parse(file).size()+1; i++) {
+                DatabaseDAO.statement.executeUpdate("INSERT INTO pracktica.visibility (id_ground_station,id_spacecraft,start_time,end_time) VALUES ('" + parserOne.getDateStart().get(i) + "', '" +  parserOne.getDateEnd().get(i)  + "', '" + idTown + "' , '" + parserOne.getName().get(i) + "' )");
             }
+
         } catch (SQLException e) {
             throw new RuntimeException(e);
         } finally {

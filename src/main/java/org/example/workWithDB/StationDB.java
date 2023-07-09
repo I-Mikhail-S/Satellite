@@ -13,7 +13,7 @@ public class StationDB implements InterfaceCRUD{
     public static void completion() {
         try {
             for (int i = 1; i < 4; i++) {
-                DatabaseDAO.statement.executeUpdate("INSERT INTO schema.ground_station (id) VALUES (" + i + ")");
+                DatabaseDAO.statement.executeUpdate("INSERT INTO pracktica.ground_station (id) VALUES (" + i + ")");
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);
