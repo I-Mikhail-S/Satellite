@@ -12,13 +12,8 @@ public class SpacecraftDB implements InterfaceCRUD{
 
     public static void completion() {
         try {
-<<<<<<< HEAD
             for (int i = 1; i < 9; i++) {
                 DatabaseDAO.statement.executeUpdate("INSERT INTO pracktica.spacecraft (id) VALUES (" + i + ")");
-=======
-            for (int i = 1; i < 9; i++) { // всего 8 спутников
-                DatabaseDAO.statement.executeUpdate("INSERT INTO schema.spacecraft (id) VALUES (" + i + ")");
->>>>>>> 3c1d791dec2d1915fe9736e4c9d45eec3cd2d7a1
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);

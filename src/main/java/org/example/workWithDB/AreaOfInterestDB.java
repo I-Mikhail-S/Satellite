@@ -13,7 +13,7 @@ public class AreaOfInterestDB implements InterfaceCRUD{
     public static void completion() {
         try {
             for (int i = 1; i < 1000; i++) { // всего 999 Районов Интереса
-                DatabaseDAO.statement.executeUpdate("INSERT INTO schema.area_of_interest (id) VALUES (" + i + ")");
+                DatabaseDAO.statement.executeUpdate("INSERT INTO pracktica.area_of_interest (id) VALUES (" + i + ")");
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);

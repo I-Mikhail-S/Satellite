@@ -10,14 +10,9 @@ import org.example.workWithDB.VisibilityDB;
 import java.io.IOException;
 
 public class Main {
-<<<<<<< HEAD
+
     public static void main(String[] args) {
         VisibilityDB visibilityDB = new VisibilityDB();
-        visibilityDB.completion("Moscow.txt",1);
-=======
-    public static void main(String[] args) throws IOException {
-
-
->>>>>>> 3c1d791dec2d1915fe9736e4c9d45eec3cd2d7a1
+        visibilityDB.completion("Ulan-Ude.txt",3);
     }
 }
