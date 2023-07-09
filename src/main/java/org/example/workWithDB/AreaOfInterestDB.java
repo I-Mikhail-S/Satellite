@@ -5,46 +5,46 @@ import org.example.utils.DatabaseDAO;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class StationDB implements InterfaceCRUD{
+public class AreaOfInterestDB implements InterfaceCRUD{
     private static ResultSet resultSet;
 
-    public StationDB() {}
+    public AreaOfInterestDB() {}
 
     public static void completion() {
         try {
-            for (int i = 1; i < 4; i++) { // всего 3 наземных станции (1 - Москва; 2 - Екатеринбург; 3 - Улан-Уде)
-                DatabaseDAO.statement.executeUpdate("INSERT INTO schema.ground_station (id) VALUES (" + i + ")");
+            for (int i = 1; i < 1000; i++) { // всего 999 Районов Интереса
+                DatabaseDAO.statement.executeUpdate("INSERT INTO schema.area_of_interest (id) VALUES (" + i + ")");
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);
         } finally {
-            System.out.println("\"completion.ground_station\" отработал.");
+            System.out.println("\"completion.area_of_interest\" отработал.");
         }
     }
 
     public static void deleted(int id) {
         try {
-            DatabaseDAO.statement.executeUpdate("DELETE FROM schema.ground_station WHERE id = " + id);
+            DatabaseDAO.statement.executeUpdate("DELETE FROM schema.area_of_interest WHERE id = " + id);
         } catch (SQLException e) {
             throw new RuntimeException(e);
         } finally {
-            System.out.println("\"deleted.ground_station\" отработал.");
+            System.out.println("\"deleted.area_of_interest\" отработал.");
         }
     }
 
     public static void deletedAll() {
         try {
-            DatabaseDAO.statement.executeUpdate("DELETE FROM schema.ground_station");
+            DatabaseDAO.statement.executeUpdate("DELETE FROM schema.area_of_interest");
         } catch (SQLException e) {
             throw new RuntimeException(e);
         } finally {
-            System.out.println("\"deletedAll.ground_station\" отработал.");
+            System.out.println("\"deletedAll.area_of_interest\" отработал.");
         }
     }
 
     public static void report() {
         try {
-            resultSet = DatabaseDAO.statement.executeQuery("SELECT * FROM schema.ground_station");
+            resultSet = DatabaseDAO.statement.executeQuery("SELECT * FROM schema.area_of_interest");
             while (resultSet.next()) {
                 System.out.println(resultSet.getRow() + ". " +
                         resultSet.getInt("id") + ';');
@@ -52,7 +52,7 @@ public class StationDB implements InterfaceCRUD{
         } catch (SQLException e) {
             throw new RuntimeException(e);
         } finally {
-            System.out.println("\"report.ground_station\" отработал.");
+            System.out.println("\"report.area_of_interest\" отработал.");
         }
     }
 }
