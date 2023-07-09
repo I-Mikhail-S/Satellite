@@ -7,46 +7,46 @@ import java.io.*;
 import java.util.*;
 
 public class Parser implements AllParser {
-    private List<String> date;
-    private List<String> name;
+
+    private List<String> dateStart = new ArrayList<>();
+    private List<String> dateEnd = new ArrayList<>();
+    private List<String> name = new ArrayList<>();
     public static final int countSymbolsAll = 33;
-
-    public Parser() {
-        this.date = new ArrayList<>();
-        this.name = new ArrayList<>();
-    }
-
-    public List<String> getDate() {
-        return date;
-    }
-
     public List<String> getName() {
         return name;
     }
-
+    @Override
     public List<String> parse(String file) {
-        List<String> all= new ArrayList<>();
-         try(BufferedReader br = new BufferedReader(new FileReader(file))) {
+        List<String> all = new ArrayList<>();
+        try (BufferedReader br = new BufferedReader(new FileReader(file))) {
             StringBuilder sb = new StringBuilder();
             String line = br.readLine();
-
+            int count = 1;
             while (line != null) {
-                sb.append(line);
-                sb.append(System.lineSeparator());
-
-                if(line.isEmpty()!=true){
+                if (count % 2 != 0 && line.isEmpty() != true) {
+                    sb.append(line);
+                    sb.append(System.lineSeparator());
                     all.add(line.substring(0, countSymbolsAll));
+                    line = br.readLine();
+                } else {
+                    line = br.readLine();
                 }
-                line = br.readLine();
+                count++;
             }
         } catch (IOException e) {
-             e.printStackTrace();
-         }
-         for (int i = 0; i < all.size(); i++) {
-             date.add(all.get(i).substring(0, 19));
-             name.add(String.valueOf(all.get(i).charAt(32)));
+            e.printStackTrace();
         }
-        return  all;
+        for (int i = 0; i < all.size(); i++) {
+            if(i%2!=0){
+                dateStart.add(all.get(i).substring(0, 19));
+            }
+            else{
+                dateEnd.add(all.get(i).substring(0, 19));
+            }
+            name.add(String.valueOf(all.get(i).charAt(32)));
+        }
+        return all;
     }
 
 }
+
