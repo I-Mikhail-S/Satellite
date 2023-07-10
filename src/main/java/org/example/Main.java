@@ -1,13 +1,9 @@
 package org.example;
 
-
-<<<<<<< HEAD
 import org.example.utils.DatabaseDAO;
 import org.example.utils.Parser;
 import org.example.utils.ParserSecond;
 import org.example.workWithDB.*;
-=======
->>>>>>> 5b27bb34c65d26d50b4ffa40d5d45381905fc800
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -17,16 +13,12 @@ import java.util.List;
 public class Main {
 
     public static void main(String[] args) {
-
-<<<<<<< HEAD
-         ParserSecond parserSecond = new ParserSecond();
-        VisibilitySecondDB visibilitySecondDB = new VisibilitySecondDB();
-        List<String> listData = new ArrayList<>(parserSecond.parse("visible.txt"));
-        visibilitySecondDB.completion(listData);
-        visibilitySecondDB.report();
-=======
->>>>>>> 5b27bb34c65d26d50b4ffa40d5d45381905fc800
-
+        Parser parser = new Parser();
+       VisibilityDB visibilityDB = new VisibilityDB();
+        visibilityDB.completion("Ulan-Ude.txt",3);
+     /*   for (int i = 0; i < parser.parse("Moscow.txt").size()/2; i++) {
+            System.out.println(i +" " + parser.getName().get(i)+ " " + parser.getDateStart().get(i)+ " " +parser.getDateEnd().get(i));
+        }*/
 
     }
 }
