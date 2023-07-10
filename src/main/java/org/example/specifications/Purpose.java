@@ -17,7 +17,7 @@ public class Purpose {
         if (stationOrArea instanceof AreaOfInterest)
             this.dataSize = ((AreaOfInterest) stationOrArea).getDataSize();
         else
-            this.dataSize = satellite.getDataSize();
+            this.dataSize = new DataSize((int) (timeVisible.getTimeIntervalSecond() * DataSize.speedSendDate));
     }
 
     public Satellite getSatellite() {

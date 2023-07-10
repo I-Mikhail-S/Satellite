@@ -2,6 +2,7 @@ package org.example.specifications;
 
 public class DataSize {
     private int gigabyte;
+    public static final double speedSendDate = 0.25; // Гбайт/сек
 
     public DataSize(int gigabyte) {
         this.gigabyte = gigabyte;
