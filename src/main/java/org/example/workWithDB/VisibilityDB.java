@@ -16,7 +16,7 @@ public class VisibilityDB implements InterfaceNotCRUD {
 
     public void completion(String file,int idTown) {
         try {
-            for (int i = 0; i < parserOne.parse(file).size(); i++) {
+            for (int i = 0; i < parserOne.parse(file).size()/2; i++) {
                 DatabaseDAO.statement.executeUpdate("INSERT INTO schema.visibility (start_time,end_time,id_ground_station,id_spacecraft) VALUES ('" +
                         parserOne.getDateEnd().get(i) + "', '" +parserOne.getDateStart().get(i) + "', '" + idTown + "' , '" + parserOne.getName().get(i) + "' )");
             }

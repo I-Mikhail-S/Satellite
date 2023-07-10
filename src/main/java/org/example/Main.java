@@ -1,16 +1,14 @@
 package org.example;
 
-import org.example.algorithm.BasicAlgorithm;
-import org.example.entities.CreateEntities;
-import org.example.utils.DatabaseDAO;
-
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import org.example.utils.Parser;
 
 public class Main {
 
     public static void main(String[] args) {
-
+        Parser parser = new Parser();
+        for (int i = 0; i < parser.parse("Moscow.txt").size()/2; i++) {
+            System.out.println(i +" " + parser.getName().get(i)+ " " + parser.getDateStart().get(i)+ " " +parser.getDateEnd().get(i));
+        }
 
     }
 }

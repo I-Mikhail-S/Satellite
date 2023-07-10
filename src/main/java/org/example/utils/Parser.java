@@ -45,14 +45,14 @@ public class Parser implements AllParser {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        for (int i = 0; i < all.size(); i++) {
+        for (int i = 0,j = 0; i < all.size()&& j < all.size();j+=2, i++) {
             if(i%2!=0){
-                dateStart.add(all.get(i).substring(0, 19));
-            }
-            else{
                 dateEnd.add(all.get(i).substring(0, 19));
             }
-            name.add(String.valueOf(all.get(i).charAt(32)));
+            else{
+                dateStart.add(all.get(i).substring(0, 19));
+            }
+            name.add(String.valueOf(all.get(j).charAt(32)));
         }
         return all;
     }
