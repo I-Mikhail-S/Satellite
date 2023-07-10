@@ -5,7 +5,7 @@ import org.example.utils.DatabaseDAO;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class StationDB implements InterfaceCRUD{
+public class StationDB implements InterfaceNotCRUD {
     private ResultSet resultSet;
 
     public StationDB() {}

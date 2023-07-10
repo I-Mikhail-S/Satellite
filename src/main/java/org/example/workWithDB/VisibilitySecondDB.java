@@ -6,7 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 
-public class VisibilitySecondDB implements InterfaceCRUD{
+public class VisibilitySecondDB implements InterfaceNotCRUD {
     private ResultSet resultSet;
 
     public VisibilitySecondDB() {}

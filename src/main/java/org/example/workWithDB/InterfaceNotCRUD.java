@@ -1,6 +1,6 @@
 package org.example.workWithDB;
 
- interface InterfaceCRUD {
+ interface InterfaceNotCRUD {
 
   void deleted(int id);
   void deletedAll();

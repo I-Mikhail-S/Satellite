@@ -40,6 +40,14 @@ public class Satellite {
         this.dataSize = dataSize;
     }
 
+    public Schedule getSchedule() {
+        return schedule;
+    }
+
+    public void setSchedule(Schedule schedule) {
+        this.schedule = schedule;
+    }
+
     @Override
     public String toString() {
         return "Satellite{" +

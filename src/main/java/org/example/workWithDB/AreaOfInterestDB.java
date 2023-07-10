@@ -5,7 +5,7 @@ import org.example.utils.DatabaseDAO;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class AreaOfInterestDB implements InterfaceCRUD{
+public class AreaOfInterestDB implements InterfaceNotCRUD {
     private ResultSet resultSet;
 
     public AreaOfInterestDB() {}

@@ -5,10 +5,12 @@ import org.example.specifications.TimeInterval;
 
 public class AreaOfInterest implements StationAndAreaOfInterest {
     private int id;
+    private boolean flag; // точка была сфотографирована
     public static final DataSize dataSize = new DataSize(1);
 
     public AreaOfInterest(int id) {
         this.id = id;
+        flag = false;
     }
 
     public int getId() {
@@ -17,6 +19,14 @@ public class AreaOfInterest implements StationAndAreaOfInterest {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public boolean isFlag() {
+        return flag;
+    }
+
+    public void setFlag(boolean flag) {
+        this.flag = flag;
     }
 
     public DataSize getDataSize() {

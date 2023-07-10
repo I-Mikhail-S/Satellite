@@ -20,6 +20,16 @@ public class TimeInterval{
         return java.time.Duration.between(dateTime1, dateTime2).getSeconds();
     }
 
+    public long getTimeStartSecond() {
+        LocalDateTime dateTime = LocalDateTime.parse(start.getStringTime(), DateTimeFormatter.ofPattern(Time.patternString));
+        return dateTime.getSecond();
+    }
+
+    public long getTimeFinishSecond() {
+        LocalDateTime dateTime = LocalDateTime.parse(finish.getStringTime(), DateTimeFormatter.ofPattern(Time.patternString));
+        return dateTime.getSecond();
+    }
+
     public Time getStart() {
         return start;
     }

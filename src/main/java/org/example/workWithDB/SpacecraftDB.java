@@ -5,7 +5,7 @@ import org.example.utils.DatabaseDAO;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class SpacecraftDB implements InterfaceCRUD{
+public class SpacecraftDB implements InterfaceNotCRUD {
     private ResultSet resultSet;
 
     public SpacecraftDB() {}

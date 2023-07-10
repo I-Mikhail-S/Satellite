@@ -1,25 +1,16 @@
 package org.example;
 
-
-
-import org.example.specifications.TimeInterval;
-import org.example.utils.Time;
+import org.example.algorithm.BasicAlgorithm;
+import org.example.entities.CreateEntities;
+import org.example.utils.DatabaseDAO;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.text.ParseException;
-import java.util.ArrayList;
-import java.util.List;
 
 public class Main {
 
-    public static void main(String[] args) throws ParseException {
+    public static void main(String[] args) {
 
-        TimeInterval timeInterval = new TimeInterval(
-                new Time("2023-07-01 00:13:35"),
-                new Time("2023-07-01 00:15:15")
-        );
-        System.out.println(timeInterval.getTimeIntervalSecond());
 
     }
 }

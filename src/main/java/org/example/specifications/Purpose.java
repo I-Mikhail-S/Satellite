@@ -4,7 +4,7 @@ import org.example.entities.AreaOfInterest;
 import org.example.entities.Satellite;
 import org.example.entities.StationAndAreaOfInterest;
 
-public class Purpose {
+public class Purpose implements Comparable<Purpose>{
     private Satellite satellite;
     private StationAndAreaOfInterest stationOrArea;
     private TimeInterval timeVisible;
@@ -50,6 +50,11 @@ public class Purpose {
 
     public void setDataSize(DataSize dataSize) {
         this.dataSize = dataSize;
+    }
+
+    @Override
+    public int compareTo(Purpose purpose) {
+        return (int) (this.getTimeInterval().getTimeStartSecond() - purpose.getTimeInterval().getTimeFinishSecond());
     }
 
     @Override

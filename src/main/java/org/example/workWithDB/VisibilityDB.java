@@ -2,12 +2,11 @@ package org.example.workWithDB;
 
 import org.example.utils.DatabaseDAO;
 import org.example.utils.Parser;
-import org.example.utils.ParserSecond;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class VisibilityDB implements InterfaceCRUD{
+public class VisibilityDB implements InterfaceNotCRUD {
     private ResultSet resultSet;
     private  static Parser parserOne;
 
