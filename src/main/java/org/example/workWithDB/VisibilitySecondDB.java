@@ -7,11 +7,11 @@ import java.sql.SQLException;
 import java.util.List;
 
 public class VisibilitySecondDB implements InterfaceCRUD{
-    private static ResultSet resultSet;
+    private ResultSet resultSet;
 
     public VisibilitySecondDB() {}
 
-    public static void completion(List<String> listData) {
+    public void completion(List<String> listData) {
         try {
             String pointId = "-1";
             String satelliteId = "-1";
@@ -38,7 +38,7 @@ public class VisibilitySecondDB implements InterfaceCRUD{
         }
     }
 
-    public static void deleted(int id) {
+    public void deleted(int id) {
         try {
             DatabaseDAO.statement.executeUpdate("DELETE FROM schema.visibility WHERE id = " + id);
         } catch (SQLException e) {
@@ -48,7 +48,7 @@ public class VisibilitySecondDB implements InterfaceCRUD{
         }
     }
 
-    public static void deletedAll() {
+    public void deletedAll() {
         try {
             DatabaseDAO.statement.executeUpdate("DELETE FROM schema.visibility");
         } catch (SQLException e) {
@@ -58,18 +58,18 @@ public class VisibilitySecondDB implements InterfaceCRUD{
         }
     }
 
-    public static void report() {
+    public void report() {
         try {
             resultSet = DatabaseDAO.statement.executeQuery("SELECT * FROM schema.visibility");
             while (resultSet.next()) {
                 System.out.println(
-                        resultSet.getRow() + ". " +
+                        resultSet.getRow() + "; " +
                         resultSet.getInt("id") + ", " +
                         resultSet.getInt("id_ground_station") + ", " +
                         resultSet.getInt("id_spacecraft") + ", " +
                         resultSet.getInt("id_area_of_interest") + ", " +
                         resultSet.getString("start_time") + ", " +
-                        resultSet.getString("end_time") + '.'
+                        resultSet.getString("end_time") + ';'
                         );
             }
         } catch (SQLException e) {

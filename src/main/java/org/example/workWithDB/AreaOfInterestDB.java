@@ -6,11 +6,11 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class AreaOfInterestDB implements InterfaceCRUD{
-    private static ResultSet resultSet;
+    private ResultSet resultSet;
 
     public AreaOfInterestDB() {}
 
-    public static void completion() {
+    public void completion() {
         try {
             for (int i = 0; i < 1000; i++) { // всего 1000 Районов Интереса начиная с "0"
                 DatabaseDAO.statement.executeUpdate("INSERT INTO schema.area_of_interest (id) VALUES (" + i + ")");
@@ -22,7 +22,7 @@ public class AreaOfInterestDB implements InterfaceCRUD{
         }
     }
 
-    public static void deleted(int id) {
+    public void deleted(int id) {
         try {
             DatabaseDAO.statement.executeUpdate("DELETE FROM schema.area_of_interest WHERE id = " + id);
         } catch (SQLException e) {
@@ -32,7 +32,7 @@ public class AreaOfInterestDB implements InterfaceCRUD{
         }
     }
 
-    public static void deletedAll() {
+    public void deletedAll() {
         try {
             DatabaseDAO.statement.executeUpdate("DELETE FROM schema.area_of_interest");
         } catch (SQLException e) {
@@ -42,7 +42,7 @@ public class AreaOfInterestDB implements InterfaceCRUD{
         }
     }
 
-    public static void report() {
+    public void report() {
         try {
             resultSet = DatabaseDAO.statement.executeQuery("SELECT * FROM schema.area_of_interest");
             while (resultSet.next()) {

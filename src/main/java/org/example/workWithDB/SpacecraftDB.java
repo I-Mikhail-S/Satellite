@@ -6,11 +6,11 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class SpacecraftDB implements InterfaceCRUD{
-    private static ResultSet resultSet;
+    private ResultSet resultSet;
 
     public SpacecraftDB() {}
 
-    public static void completion() {
+    public void completion() {
         try {
             for (int i = 1; i < 9; i++) {
                 DatabaseDAO.statement.executeUpdate("INSERT INTO schema.spacecraft (id) VALUES (" + i + ")");
@@ -22,7 +22,7 @@ public class SpacecraftDB implements InterfaceCRUD{
         }
     }
 
-    public static void deleted(int id) {
+    public void deleted(int id) {
         try {
             DatabaseDAO.statement.executeUpdate("DELETE FROM schema.spacecraft WHERE id = " + id);
         } catch (SQLException e) {
@@ -32,7 +32,7 @@ public class SpacecraftDB implements InterfaceCRUD{
         }
     }
 
-    public static void deletedAll() {
+    public void deletedAll() {
         try {
             DatabaseDAO.statement.executeUpdate("DELETE FROM schema.spacecraft");
         } catch (SQLException e) {
@@ -42,7 +42,7 @@ public class SpacecraftDB implements InterfaceCRUD{
         }
     }
 
-    public static void report() {
+    public void report() {
         try {
             resultSet = DatabaseDAO.statement.executeQuery("SELECT * FROM schema.spacecraft");
             while (resultSet.next()) {

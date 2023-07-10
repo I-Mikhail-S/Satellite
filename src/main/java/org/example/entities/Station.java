@@ -5,17 +5,15 @@ import org.example.specifications.DataSize;
 import org.example.specifications.TimeInterval;
 
 // Наземная станция, приёмник
-public class Station {
-    private int id; // (Moscow - 1; Ekaterinburg - 2; Ulan-Ude - 3)
+public class Station implements StationAndAreaOfInterest{
+    private int id; // Moscow - 1; Ekaterinburg - 2; Ulan-Ude - 3
     private DataSize dataSize;
-    private TimeInterval timeInterval;
 
     public Station() {
     }
 
-    public Station(int id, TimeInterval timeInterval) {
+    public Station(int id) {
         this.id = id;
-        this.timeInterval = timeInterval;
         this.dataSize = new DataSize(0);
     }
 
@@ -25,14 +23,6 @@ public class Station {
 
     public void setId(int id) {
         this.id = id;
-    }
-
-    public TimeInterval getTimeInterval() {
-        return timeInterval;
-    }
-
-    public void setTimeInterval(TimeInterval timeInterval) {
-        this.timeInterval = timeInterval;
     }
 
     public DataSize getDataSize() {
@@ -47,7 +37,6 @@ public class Station {
     public String toString() {
         return "Station{" +
                 "id='" + id + '\'' +
-                ", timeInterval=" + timeInterval +
                 ", dataSize=" + dataSize +
                 '}';
     }

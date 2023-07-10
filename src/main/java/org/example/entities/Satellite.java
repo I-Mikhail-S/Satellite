@@ -1,21 +1,27 @@
 package org.example.entities;
 
 import org.example.specifications.DataSize;
+import org.example.specifications.Schedule;
 import org.example.specifications.TimeInterval;
+
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 // Спутники
 public class Satellite {
     private int id;
-    private DataSize dataSize;
-    private TimeInterval timeInterval;
+    private DataSize dataSize; // количество данных, хранимых на спутнике
+    private Schedule schedule;
 
     public Satellite () {
     }
 
-    public Satellite(int id, TimeInterval timeInterval) {
+    public Satellite(int id) {
         this.id = id;
-        this.timeInterval = timeInterval;
         this.dataSize = new DataSize(0);
+        this.schedule = new Schedule();
     }
 
     public int getId() {
@@ -34,20 +40,11 @@ public class Satellite {
         this.dataSize = dataSize;
     }
 
-    public TimeInterval getTimeInterval() {
-        return timeInterval;
-    }
-
-    public void setTimeInterval(TimeInterval timeInterval) {
-        this.timeInterval = timeInterval;
-    }
-
     @Override
     public String toString() {
         return "Satellite{" +
                 "id=" + id +
                 ", dataSize=" + dataSize +
-                ", time=" + timeInterval +
                 '}';
     }
 }
