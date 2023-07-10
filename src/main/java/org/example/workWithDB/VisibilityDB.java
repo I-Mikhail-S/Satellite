@@ -8,14 +8,14 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class VisibilityDB implements InterfaceCRUD{
-    private static ResultSet resultSet;
+    private ResultSet resultSet;
     private  static Parser parserOne;
 
     public VisibilityDB() {
         parserOne = new Parser();
     }
 
-    public static void completion(String file,int idTown) {
+    public void completion(String file,int idTown) {
         try {
             for (int i = 0; i < parserOne.parse(file).size(); i++) {
                 DatabaseDAO.statement.executeUpdate("INSERT INTO schema.visibility (start_time,end_time,id_ground_station,id_spacecraft) VALUES ('" +
@@ -28,7 +28,7 @@ public class VisibilityDB implements InterfaceCRUD{
         }
     }
 
-    public static void deleted(int id) {
+    public void deleted(int id) {
         try {
             DatabaseDAO.statement.executeUpdate("DELETE FROM schema.visibility WHERE id = " + id);
         } catch (SQLException e) {
@@ -38,7 +38,7 @@ public class VisibilityDB implements InterfaceCRUD{
         }
     }
 
-    public static void deletedAll() {
+    public void deletedAll() {
         try {
             DatabaseDAO.statement.executeUpdate("DELETE FROM schema.visibility");
         } catch (SQLException e) {
@@ -48,7 +48,7 @@ public class VisibilityDB implements InterfaceCRUD{
         }
     }
 
-    public static void report() {
+    public void report() {
         try {
             resultSet = DatabaseDAO.statement.executeQuery("SELECT * FROM schema.visibility");
             while (resultSet.next()) {

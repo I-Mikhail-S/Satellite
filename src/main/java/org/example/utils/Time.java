@@ -15,6 +15,11 @@ public class Time {
         format.format(calendar.getTime());
     }
 
+    public Time(String stringDate) {
+        this.format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        format.format(stringDate);
+    }
+
     public Calendar getCalendar() {
         return calendar;
     }
