@@ -11,7 +11,9 @@ public class Parser implements AllParser {
     private List<String> dateStart = new ArrayList<>();
     private List<String> dateEnd = new ArrayList<>();
     private List<String> name = new ArrayList<>();
+
     public static final int countSymbolsAll = 33;
+
     public List<String> getName() {
         return name;
     }
@@ -45,14 +47,16 @@ public class Parser implements AllParser {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        for (int i = 0,j = 0; i < all.size()&& j < all.size();j+=2, i++) {
+        for (int i = 0; i < all.size(); i+=2) {
+            name.add(String.valueOf(all.get(i).charAt(32)));
+        }
+        for (int i = 0; i < all.size(); i++) {
             if(i%2!=0){
                 dateEnd.add(all.get(i).substring(0, 19));
             }
             else{
                 dateStart.add(all.get(i).substring(0, 19));
             }
-            name.add(String.valueOf(all.get(j).charAt(32)));
         }
         return all;
     }
