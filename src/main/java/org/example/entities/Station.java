@@ -7,7 +7,8 @@ import org.example.specifications.TimeInterval;
 // Наземная станция, приёмник
 public class Station implements StationAndAreaOfInterest{
     private int id; // Moscow - 1; Ekaterinburg - 2; Ulan-Ude - 3
-    private DataSize dataSize;
+    private DataSize dataSize; // количество данных, которое станция примет за сеанс связи
+    private boolean flag; // у этой переменной очень тонкий смысл (руками не трогать!)
 
     public Station() {
     }
@@ -15,6 +16,7 @@ public class Station implements StationAndAreaOfInterest{
     public Station(int id) {
         this.id = id;
         this.dataSize = new DataSize(0);
+        this.flag = true;
     }
 
     public int getId() {
@@ -31,6 +33,16 @@ public class Station implements StationAndAreaOfInterest{
 
     public void setDataSize(DataSize dataSize) {
         this.dataSize = dataSize;
+    }
+
+    @Override
+    public boolean isFlag() {
+        return flag;
+    }
+
+    @Override
+    public void setFlag(boolean flag) {
+        this.flag = flag;
     }
 
     @Override

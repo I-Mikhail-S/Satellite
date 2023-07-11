@@ -21,10 +21,12 @@ public class AreaOfInterest implements StationAndAreaOfInterest {
         this.id = id;
     }
 
+    @Override
     public boolean isFlag() {
         return flag;
     }
 
+    @Override
     public void setFlag(boolean flag) {
         this.flag = flag;
     }

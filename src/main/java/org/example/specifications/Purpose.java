@@ -6,7 +6,7 @@ import org.example.entities.StationAndAreaOfInterest;
 
 public class Purpose implements Comparable<Purpose>{
     private Satellite satellite;
-    private StationAndAreaOfInterest stationOrArea;
+    private Object stationOrArea;
     private TimeInterval timeVisible;
     private DataSize dataSize;
 
@@ -29,7 +29,7 @@ public class Purpose implements Comparable<Purpose>{
     }
 
     public StationAndAreaOfInterest getStationOrArea() {
-        return stationOrArea;
+        return (StationAndAreaOfInterest) stationOrArea;
     }
 
     public void setStationOrArea(StationAndAreaOfInterest stationOrArea) {

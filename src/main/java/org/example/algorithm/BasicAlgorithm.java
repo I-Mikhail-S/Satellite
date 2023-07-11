@@ -12,14 +12,12 @@ import org.example.utils.Time;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.ParseException;
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
 public class BasicAlgorithm {
 
-    public List<Schedule> basicAlgorithm(List<Satellite> satelliteList, List<Station> stationList, List<AreaOfInterest> areaOfInterestList) {
-        List<Schedule> scheduleAllSatellite = new ArrayList<>();
+    public void basicAlgorithm(List<Satellite> satelliteList, List<Station> stationList, List<AreaOfInterest> areaOfInterestList) {
         try {
             ResultSet resultSet = DatabaseDAO.statement.executeQuery("SELECT * FROM schema.visibility");
                 while (resultSet.next()) {
@@ -128,13 +126,10 @@ public class BasicAlgorithm {
                     for (int i = 0; i < satelliteList.size(); i++) {
                         sortedSchedule(satelliteList.get(i).getSchedule());
                     }
-
-
                 }
         } catch (SQLException | ParseException e) {
             throw new RuntimeException(e);
         }
-        return scheduleAllSatellite;
     }
 
     public void sortedSchedule(Schedule schedule) {

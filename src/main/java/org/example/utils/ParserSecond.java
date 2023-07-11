@@ -21,7 +21,7 @@ public class ParserSecond implements AllParser {
         try {
             BufferedReader br = new BufferedReader(new FileReader(txt));
             String line = String.valueOf(br.readLine());
-            Pattern pattern = Pattern.compile("(.*).23 (.*)"); //dd-MM-yy hh:mm:ss
+            Pattern pattern = Pattern.compile("(.*).23 (.*)"); //dd.MM(.23 )hh:mm:ss
             SimpleDateFormat oldDateFormat = new SimpleDateFormat("dd-MM-yy HH:mm:ss", Locale.getDefault());
             SimpleDateFormat newDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault());
             while (line != null){

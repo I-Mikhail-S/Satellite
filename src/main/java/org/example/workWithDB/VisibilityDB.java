@@ -14,11 +14,14 @@ public class VisibilityDB implements InterfaceNotCRUD {
         parserOne = new Parser();
     }
 
-    public void completion(String file,int idTown) {
+    public void completion(String file, int idTown) {
         try {
             for (int i = 0; i < parserOne.parse(file).size()/2; i++) {
-                DatabaseDAO.statement.executeUpdate("INSERT INTO schema.visibility (start_time,end_time,id_ground_station,id_spacecraft) VALUES ('" +
-                        parserOne.getDateEnd().get(i) + "', '" +parserOne.getDateStart().get(i) + "', '" + idTown + "' , '" + parserOne.getName().get(i) + "' )");
+                DatabaseDAO.statement.executeUpdate("INSERT INTO schema.visibility (id_ground_station,id_spacecraft, start_time,end_time) VALUES ('" +
+                        idTown + "', '"
+                        + parserOne.getName().get(i) + "', '"
+                        + parserOne.getDateEnd().get(i) + "' , '"
+                        + parserOne.getDateStart().get(i)+ "' )");
             }
             } catch (SQLException e) {
             throw new RuntimeException(e);

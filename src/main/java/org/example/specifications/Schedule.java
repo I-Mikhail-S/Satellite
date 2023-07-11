@@ -1,6 +1,6 @@
 package org.example.specifications;
 
-import org.example.entities.Station;
+import org.example.entities.AreaOfInterest;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,7 +13,7 @@ public class Schedule {
         this.allPurpose = allPurpose;
         int dataSize = 0;
         for (Purpose helpVariable : allPurpose)
-            if (helpVariable.getStationOrArea() instanceof Station)
+            if (helpVariable.getStationOrArea() instanceof AreaOfInterest)
                 dataSize += helpVariable.getDataSize().getGigabyte();
         this.dataSize = new DataSize(dataSize);
     }
@@ -25,7 +25,7 @@ public class Schedule {
 
     public void addPurpose(Purpose purpose) {
         allPurpose.add(purpose);
-        if (purpose.getStationOrArea() instanceof Station)
+        if (purpose.getStationOrArea() instanceof AreaOfInterest)
             this.dataSize.setGigabyte(dataSize.getGigabyte() + purpose.getDataSize().getGigabyte());
     }
 
