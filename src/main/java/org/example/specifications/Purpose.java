@@ -54,13 +54,16 @@ public class Purpose implements Comparable<Purpose>{
 
     @Override
     public int compareTo(Purpose purpose) {
-        return (int) (this.getTimeInterval().getTimeStartSecond() - purpose.getTimeInterval().getTimeFinishSecond());
+        if (this.getTimeInterval().getTimeStartSecond() > purpose.getTimeInterval().getTimeStartSecond())
+            return 1;
+        if (this.getTimeInterval().getTimeStartSecond() < purpose.getTimeInterval().getTimeStartSecond())
+            return -1;
+        return 0;
     }
 
     @Override
     public String toString() {
         return "Purpose{" +
-                "satellite=" + satellite +
                 ", stationOrArea=" + stationOrArea +
                 ", timeInterval=" + timeVisible +
                 '}';

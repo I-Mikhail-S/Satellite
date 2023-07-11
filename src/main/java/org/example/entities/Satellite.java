@@ -53,6 +53,7 @@ public class Satellite {
         return "Satellite{" +
                 "id=" + id +
                 ", dataSize=" + dataSize +
+                ", schedule=" + schedule +
                 '}';
     }
 }
