@@ -15,9 +15,9 @@ import java.text.ParseException;
 import java.util.Collections;
 import java.util.List;
 
-public class BasicAlgorithm {
+public class GettingDataFromBD {
 
-    public void basicAlgorithm(List<Satellite> satelliteList, List<Station> stationList, List<AreaOfInterest> areaOfInterestList) {
+    public void gettingDataFromBD(List<Satellite> satelliteList, List<Station> stationList, List<AreaOfInterest> areaOfInterestList) {
         try {
             ResultSet resultSet = DatabaseDAO.statement.executeQuery("SELECT * FROM schema.visibility");
                 while (resultSet.next()) {

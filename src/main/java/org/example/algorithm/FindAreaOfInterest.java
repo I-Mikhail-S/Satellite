@@ -16,7 +16,37 @@ public class FindAreaOfInterest {
             Schedule ideaSchedule = new Schedule();
             int maxDataSizeForOneStation = 0;
 
-            for (Purpose helpPurpose : helpSatellite.getSchedule().getAllPurpose()) {
+            for (int i = 0; i < helpSatellite.getSchedule().getAllPurpose().size(); i++) {
+                if (!helpSatellite.getSchedule().getAllPurpose().get(i).getStationOrArea().isFlag()) {
+                    ideaSchedule.addPurpose(helpSatellite.getSchedule().getAllPurpose().get(i));
+                    helpSatellite.getSchedule().getAllPurpose().get(i).getStationOrArea().setFlag(true);
+                }
+                if (helpSatellite.getSchedule().getAllPurpose().get(i).getStationOrArea() instanceof Station) {
+                    maxDataSizeForOneStation = ((Station) helpSatellite.getSchedule().getAllPurpose().get(i).getStationOrArea()).getDataSize().getGigabyte();
+                    for (int j = 0; ideaSchedule.getDataSize().getGigabyte() > maxDataSizeForOneStation; j++) {
+                        ideaSchedule.getAllPurpose().remove(j);
+                    }
+                }
+            }
+        }
+
+    }
+
+
+
+
+
+
+
+}
+
+
+
+
+
+
+/*
+                for (Purpose helpPurpose : helpSatellite.getSchedule().getAllPurpose()) {
                 if (helpPurpose.getStationOrArea() instanceof Station) {
                     maxDataSizeForOneStation = helpPurpose.getDataSize().getGigabyte();
                 }
@@ -29,6 +59,7 @@ public class FindAreaOfInterest {
                         !helpPurpose.getStationOrArea().isFlag()) {
                     ideaSchedule.addPurpose(helpPurpose);
                     helpPurpose.getStationOrArea().setFlag(true);
+                    helpSatellite.getSchedule().getAllPurpose().remove(helpPurpose);
                 }
             }
             Iterator<Purpose> iterator = helpSatellite.getSchedule().getAllPurpose().iterator();
@@ -43,9 +74,5 @@ public class FindAreaOfInterest {
                     break;
                 }
             }
+    */
 
-        }
-    }
-
-
-}

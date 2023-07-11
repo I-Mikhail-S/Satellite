@@ -1,7 +1,6 @@
 package org.example.entities;
 
 import org.example.specifications.DataSize;
-import org.example.specifications.TimeInterval;
 
 public class AreaOfInterest implements StationAndAreaOfInterest {
     private int id;

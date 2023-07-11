@@ -38,7 +38,12 @@ public class Schedule {
     }
 
     public DataSize getDataSize() {
-        return dataSize;
+        int dataSize = 0;
+        for (Purpose helpVariable : allPurpose)
+            if (helpVariable.getStationOrArea() instanceof AreaOfInterest)
+                dataSize += helpVariable.getDataSize().getGigabyte();
+        this.dataSize.setGigabyte(dataSize);
+        return this.dataSize;
     }
 
     public void setDataSize(DataSize dataSize) {
