@@ -22,115 +22,36 @@ public class GettingDataFromBD {
             ResultSet resultSet = DatabaseDAO.statement.executeQuery("SELECT * FROM schema.visibility");
                 while (resultSet.next()) {
                     if (resultSet.getObject("id_ground_station") == null) {
-                        if (resultSet.getInt("id_spacecraft") == 1) {
-                            satelliteList.get(0).getSchedule().addPurpose(new Purpose(satelliteList.get(0),
-                                    areaOfInterestList.get(resultSet.getInt("id_area_of_interest")),
-                                    new TimeInterval(
-                                            new Time(resultSet.getString("start_time")),
-                                            new Time(resultSet.getString("end_time"))
-                                    )
-                            ));
-                        } else if (resultSet.getInt("id_spacecraft") == 2) {
-                            satelliteList.get(1).getSchedule().addPurpose(new Purpose(satelliteList.get(1),
-                                    areaOfInterestList.get(resultSet.getInt("id_area_of_interest")),
-                                    new TimeInterval(
-                                            new Time(resultSet.getString("start_time")),
-                                            new Time(resultSet.getString("end_time"))
-                                    )
-                            ));
-                        } else if (resultSet.getInt("id_spacecraft") == 3) {
-                            satelliteList.get(2).getSchedule().addPurpose(new Purpose(satelliteList.get(2),
-                                    areaOfInterestList.get(resultSet.getInt("id_area_of_interest")),
-                                    new TimeInterval(
-                                            new Time(resultSet.getString("start_time")),
-                                            new Time(resultSet.getString("end_time"))
-                                    )
-                            ));
-                        } else if (resultSet.getInt("id_spacecraft") == 4) {
-                            satelliteList.get(3).getSchedule().addPurpose(new Purpose(satelliteList.get(3),
-                                    areaOfInterestList.get(resultSet.getInt("id_area_of_interest")),
-                                    new TimeInterval(
-                                            new Time(resultSet.getString("start_time")),
-                                            new Time(resultSet.getString("end_time"))
-                                    )
-                            ));
-                        } else if (resultSet.getInt("id_spacecraft") == 5) {
-                            satelliteList.get(4).getSchedule().addPurpose(new Purpose(satelliteList.get(4),
-                                    areaOfInterestList.get(resultSet.getInt("id_area_of_interest")),
-                                    new TimeInterval(
-                                            new Time(resultSet.getString("start_time")),
-                                            new Time(resultSet.getString("end_time"))
-                                    )
-                            ));
-                        } else if (resultSet.getInt("id_spacecraft") == 6) {
-                            satelliteList.get(5).getSchedule().addPurpose(new Purpose(satelliteList.get(5),
-                                    areaOfInterestList.get(resultSet.getInt("id_area_of_interest")),
-                                    new TimeInterval(
-                                            new Time(resultSet.getString("start_time")),
-                                            new Time(resultSet.getString("end_time"))
-                                    )
-                            ));
-                        } else if (resultSet.getInt("id_spacecraft") == 7) {
-                            satelliteList.get(6).getSchedule().addPurpose(new Purpose(satelliteList.get(6),
-                                    areaOfInterestList.get(resultSet.getInt("id_area_of_interest")),
-                                    new TimeInterval(
-                                            new Time(resultSet.getString("start_time")),
-                                            new Time(resultSet.getString("end_time"))
-                                    )
-                            ));
-                        } else if (resultSet.getInt("id_spacecraft") == 8) {
-                            satelliteList.get(7).getSchedule().addPurpose(new Purpose(satelliteList.get(7),
-                                    areaOfInterestList.get(resultSet.getInt("id_area_of_interest")),
-                                    new TimeInterval(
-                                            new Time(resultSet.getString("start_time")),
-                                            new Time(resultSet.getString("end_time"))
-                                    )
-                            ));
-                        }
+                        //if (resultSet.getInt("id_spacecraft") != 1) continue;
+                        satelliteList.get(resultSet.getInt("id_spacecraft") - 1).getSchedule().addPurpose(
+                                new Purpose(satelliteList.get(resultSet.getInt("id_spacecraft") - 1),
+                                        areaOfInterestList.get(resultSet.getInt("id_area_of_interest")),
+                                        new TimeInterval(
+                                                new Time(resultSet.getString("start_time")),
+                                                new Time(resultSet.getString("end_time"))
+                                        )
+                                ));
+
                     } else if (resultSet.getObject("id_area_of_interest") == null) {
-                        if (resultSet.getInt("id_ground_station") == 1) {
-                            satelliteList.get(resultSet.getInt("id_spacecraft") - 1).getSchedule()
-                                    .addPurpose(new Purpose(
-                                            satelliteList.get(resultSet.getInt("id_spacecraft")  - 1),
-                                            stationList.get(0),
-                                            new TimeInterval(
-                                                    new Time(resultSet.getString("start_time")),
-                                                    new Time(resultSet.getString("end_time"))
-                                            )
-                                            )
-                                    );
-                        } else if (resultSet.getInt("id_ground_station") == 2) {
-                            satelliteList.get(resultSet.getInt("id_spacecraft")  - 1).getSchedule()
-                                    .addPurpose(new Purpose(
-                                                    satelliteList.get(resultSet.getInt("id_spacecraft")  - 1),
-                                                    stationList.get(1),
-                                                    new TimeInterval(
-                                                            new Time(resultSet.getString("start_time")),
-                                                            new Time(resultSet.getString("end_time"))
-                                                    )
-                                            )
-                                    );
-                        } else if (resultSet.getInt("id_ground_station") == 3) {
-                            satelliteList.get(resultSet.getInt("id_spacecraft")  - 1).getSchedule()
-                                    .addPurpose(new Purpose(
-                                                    satelliteList.get(resultSet.getInt("id_spacecraft")  - 1),
-                                                    stationList.get(2),
-                                                    new TimeInterval(
-                                                            new Time(resultSet.getString("start_time")),
-                                                            new Time(resultSet.getString("end_time"))
-                                                    )
-                                            )
-                                    );
-                        }
+                        //if (resultSet.getInt("id_spacecraft") != 1) continue;
+                        satelliteList.get(resultSet.getInt("id_spacecraft") - 1).getSchedule().addPurpose(
+                                new Purpose(satelliteList.get(resultSet.getInt("id_spacecraft")  - 1),
+                                        stationList.get(resultSet.getInt("id_ground_station") - 1),
+                                        new TimeInterval(
+                                                new Time(resultSet.getString("start_time")),
+                                                new Time(resultSet.getString("end_time"))
+                                        )
+                                ));
                     }
+                    //if (satelliteList.get(0).getSchedule().getAllPurpose().size() >= 1000) break;
                 }
-            for (int i = 0; i < satelliteList.size(); i++) {
-                sortedSchedule(satelliteList.get(i).getSchedule());
+            for (Satellite helpVariable : satelliteList) {
+                sortedSchedule(helpVariable.getSchedule());
             }
         } catch (SQLException | ParseException e) {
             throw new RuntimeException(e);
         }
-        System.out.println("данные выгружены");
+        System.out.println("\tДанные выгружены.");
     }
 
     public void sortedSchedule(Schedule schedule) {

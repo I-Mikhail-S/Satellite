@@ -10,24 +10,16 @@ public class TimeInterval{
     private Time finish;
 
     public TimeInterval(Time start, Time finish) {
-        this.start = start;
-        this.finish = finish;
+        if (start != null && finish != null) {
+            this.start = start;
+            this.finish = finish;
+        }
     }
 
     public long getTimeIntervalSecond() {
         LocalDateTime dateTime1= LocalDateTime.parse(start.getStringTime(), DateTimeFormatter.ofPattern(Time.patternString));
         LocalDateTime dateTime2= LocalDateTime.parse(finish.getStringTime(), DateTimeFormatter.ofPattern(Time.patternString));
         return java.time.Duration.between(dateTime1, dateTime2).getSeconds();
-    }
-
-    public long getTimeStartSecond() {
-        LocalDateTime dateTime = LocalDateTime.parse(start.getStringTime(), DateTimeFormatter.ofPattern(Time.patternString));
-        return dateTime.getSecond();
-    }
-
-    public long getTimeFinishSecond() {
-        LocalDateTime dateTime = LocalDateTime.parse(finish.getStringTime(), DateTimeFormatter.ofPattern(Time.patternString));
-        return dateTime.getSecond();
     }
 
     public Time getStart() {
@@ -38,5 +30,11 @@ public class TimeInterval{
         return finish;
     }
 
-
+    @Override
+    public String toString() {
+        return "{" +
+                "start=" + start +
+                ", finish=" + finish +
+                '}';
+    }
 }

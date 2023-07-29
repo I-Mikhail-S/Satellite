@@ -8,7 +8,7 @@ import java.sql.SQLException;
 
 public class VisibilityDB implements InterfaceNotCRUD {
     private ResultSet resultSet;
-    private  static Parser parserOne;
+    private static Parser parserOne;
 
     public VisibilityDB() {
         parserOne = new Parser();
@@ -16,15 +16,15 @@ public class VisibilityDB implements InterfaceNotCRUD {
 
     public void completion(String file, int idTown) {
         try {
-            for (int i = 0; i < parserOne.parse(file).size()/2; i++) {
+            for (int i = 0; i < parserOne.parser(file).size() / 2; i++) {
                 DatabaseDAO.statement.executeUpdate(
-                        "INSERT INTO schema.visibility (id_ground_station,id_spacecraft, start_time,end_time) VALUES ('" +
-                        idTown + "', '"
+                        "INSERT INTO schema.visibility (id_ground_station,id_spacecraft, start_time,end_time) VALUES ('"
+                        + idTown + "', '"
                         + parserOne.getName().get(i) + "', '"
                         + parserOne.getDateStart().get(i) + "' , '"
                         + parserOne.getDateEnd().get(i) + "' )");
             }
-            } catch (SQLException e) {
+        } catch (SQLException e) {
             throw new RuntimeException(e);
         } finally {
             System.out.println("\"completion.visibility\" отработал.");

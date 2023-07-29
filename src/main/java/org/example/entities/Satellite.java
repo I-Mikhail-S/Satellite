@@ -2,12 +2,8 @@ package org.example.entities;
 
 import org.example.specifications.DataSize;
 import org.example.specifications.Schedule;
-import org.example.specifications.TimeInterval;
 
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Objects;
 
 // Спутники
 public class Satellite {
@@ -46,6 +42,19 @@ public class Satellite {
 
     public void setSchedule(Schedule schedule) {
         this.schedule = schedule;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Satellite satellite = (Satellite) o;
+        return id == satellite.id && Objects.equals(dataSize, satellite.dataSize) && Objects.equals(schedule, satellite.schedule);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, dataSize, schedule);
     }
 
     @Override

@@ -1,23 +1,29 @@
 package org.example.specifications;
 
-import org.example.entities.AreaOfInterest;
-import org.example.entities.Satellite;
-import org.example.entities.StationAndAreaOfInterest;
+import org.example.entities.*;
 
-public class Purpose implements Comparable<Purpose>{
+public class Purpose implements Comparable<Purpose> {
     private Satellite satellite;
-    private Object stationOrArea;
+    private AbstractPointOnMap stationOrArea;
     private TimeInterval timeVisible;
     private DataSize dataSize;
 
-    public Purpose(Satellite satellite, StationAndAreaOfInterest stationOrArea, TimeInterval timeVisible) {
+    public Purpose(Satellite satellite, Station station, TimeInterval timeVisible) {
         this.satellite = satellite;
-        this.stationOrArea = stationOrArea;
+        this.stationOrArea = station;
         this.timeVisible = timeVisible;
-        if (stationOrArea instanceof AreaOfInterest)
-            this.dataSize = ((AreaOfInterest) stationOrArea).getDataSize();
-        else
-            this.dataSize = new DataSize((int) (timeVisible.getTimeIntervalSecond() * DataSize.speedSendDate));
+        this.dataSize = new DataSize(calculationDataSizeFromTime(timeVisible));
+    }
+
+    public Purpose(Satellite satellite, AreaOfInterest area, TimeInterval timeVisible) {
+        this.satellite = satellite;
+        this.stationOrArea = area;
+        this.timeVisible = timeVisible;
+        this.dataSize = area.getDataSize();
+    }
+
+    public int calculationDataSizeFromTime(TimeInterval timeInterval) {
+        return (int) (timeInterval.getTimeIntervalSecond() * DataSize.speedSendDate);
     }
 
     public Satellite getSatellite() {
@@ -28,11 +34,11 @@ public class Purpose implements Comparable<Purpose>{
         this.satellite = satellite;
     }
 
-    public StationAndAreaOfInterest getStationOrArea() {
-        return (StationAndAreaOfInterest) stationOrArea;
+    public AbstractPointOnMap getStationOrArea() {
+        return stationOrArea;
     }
 
-    public void setStationOrArea(StationAndAreaOfInterest stationOrArea) {
+    public void setStationOrArea(AbstractPointOnMap stationOrArea) {
         this.stationOrArea = stationOrArea;
     }
 
@@ -54,9 +60,9 @@ public class Purpose implements Comparable<Purpose>{
 
     @Override
     public int compareTo(Purpose purpose) {
-        if (this.getTimeInterval().getTimeStartSecond() > purpose.getTimeInterval().getTimeStartSecond())
+        if (this.getTimeInterval().getStart().getDate().after(purpose.getTimeInterval().getStart().getDate()))
             return 1;
-        if (this.getTimeInterval().getTimeStartSecond() < purpose.getTimeInterval().getTimeStartSecond())
+        if (this.getTimeInterval().getStart().getDate().before(purpose.getTimeInterval().getStart().getDate()))
             return -1;
         return 0;
     }

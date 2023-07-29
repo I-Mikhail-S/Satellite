@@ -1,7 +1,8 @@
 package org.example.algorithm;
 
-import org.example.entities.CreateEntities;
+import org.example.entities.AreaOfInterest;
 import org.example.entities.Satellite;
+import org.example.entities.Station;
 
 import java.util.List;
 
@@ -11,13 +12,22 @@ public class StartApplication {
         CreateEntities createEntities = new CreateEntities();
         GettingDataFromBD gettingDataFromBD = new GettingDataFromBD();
         FindAreaOfInterest findAreaOfInterest = new FindAreaOfInterest();
+
         List<Satellite> satelliteList = createEntities.createAllSatellite();
+        List<Station> stationList = createEntities.createAllStation();
+        List<AreaOfInterest> areaOfInterestList = createEntities.createAllAreaOfInterest();
+
         gettingDataFromBD.gettingDataFromBD(
                 satelliteList,
-                createEntities.createAllStation(),
-                createEntities.createAllAreaOfInterest()
+                stationList,
+                areaOfInterestList
         );
+
         findAreaOfInterest.findAreaOfInterest(satelliteList);
+        printResult(satelliteList);
+    }
+
+    public static void printResult(List<Satellite> satelliteList) {
         for (Satellite helpVariable : satelliteList) {
             System.out.println(helpVariable);
         }

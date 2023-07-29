@@ -16,8 +16,9 @@ import java.util.regex.Pattern;
 public class ParserSecond implements AllParser {
     public static final String txt = "visible.txt";
 
-    public List<String> parse(String txt) {
+    public List<String> parser(String txt) {
         List<String> all = new ArrayList<>();
+
         try {
             BufferedReader br = new BufferedReader(new FileReader(txt));
             String line = String.valueOf(br.readLine());

@@ -11,11 +11,7 @@ public class Schedule {
 
     public Schedule(List<Purpose> allPurpose) {
         this.allPurpose = allPurpose;
-        int dataSize = 0;
-        for (Purpose helpVariable : allPurpose)
-            if (helpVariable.getStationOrArea() instanceof AreaOfInterest)
-                dataSize += helpVariable.getDataSize().getGigabyte();
-        this.dataSize = new DataSize(dataSize);
+        this.dataSize = new DataSize(countAllDataSize(allPurpose));
     }
 
     public Schedule() {
@@ -25,8 +21,27 @@ public class Schedule {
 
     public void addPurpose(Purpose purpose) {
         allPurpose.add(purpose);
-        if (purpose.getStationOrArea() instanceof AreaOfInterest)
-            this.dataSize.setGigabyte(dataSize.getGigabyte() + purpose.getDataSize().getGigabyte());
+        dataSize.setGigabyte(countAllDataSize(allPurpose));
+    }
+
+    public void addAllPurpose(List<Purpose> purposeList) {
+        allPurpose.addAll(purposeList);
+        dataSize.setGigabyte(countAllDataSize(allPurpose));
+    }
+
+    public void addAllPurpose(Schedule schedule) {
+        allPurpose.addAll(schedule.getAllPurpose());
+        dataSize.setGigabyte(countAllDataSize(allPurpose));
+    }
+
+    public int countAllDataSize(List<Purpose> purposeList) {
+        int newDataSize = 0;
+        for (Purpose helpPurpose : purposeList) {
+            if (helpPurpose.getStationOrArea() instanceof AreaOfInterest) {
+                newDataSize += helpPurpose.getDataSize().getGigabyte();
+            }
+        }
+        return newDataSize;
     }
 
     public List<Purpose> getAllPurpose() {
@@ -38,12 +53,7 @@ public class Schedule {
     }
 
     public DataSize getDataSize() {
-        int dataSize = 0;
-        for (Purpose helpVariable : allPurpose)
-            if (helpVariable.getStationOrArea() instanceof AreaOfInterest)
-                dataSize += helpVariable.getDataSize().getGigabyte();
-        this.dataSize.setGigabyte(dataSize);
-        return this.dataSize;
+        return dataSize;
     }
 
     public void setDataSize(DataSize dataSize) {
@@ -52,8 +62,7 @@ public class Schedule {
 
     @Override
     public String toString() {
-        return "Schedule{" +
-                "allPurpose=" + allPurpose +
+        return "Schedule{ " + allPurpose +
                 ", dataSize=" + dataSize +
                 '}';
     }

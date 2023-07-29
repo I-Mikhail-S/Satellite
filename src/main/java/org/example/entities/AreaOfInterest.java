@@ -2,32 +2,31 @@ package org.example.entities;
 
 import org.example.specifications.DataSize;
 
-public class AreaOfInterest implements StationAndAreaOfInterest {
-    private int id;
-    private boolean flag; // точка была сфотографирована
+public class AreaOfInterest  extends AbstractPointOnMap {
     public static final DataSize dataSize = new DataSize(1);
 
     public AreaOfInterest(int id) {
-        this.id = id;
-        flag = false;
+        super(id);
     }
 
+    @Override
     public int getId() {
-        return id;
+        return super.getId();
     }
 
+    @Override
     public void setId(int id) {
-        this.id = id;
+        super.setId(id);
     }
 
     @Override
     public boolean isFlag() {
-        return flag;
+        return super.isFlag();
     }
 
     @Override
     public void setFlag(boolean flag) {
-        this.flag = flag;
+        super.setFlag(flag);
     }
 
     public DataSize getDataSize() {
@@ -37,7 +36,7 @@ public class AreaOfInterest implements StationAndAreaOfInterest {
     @Override
     public String toString() {
         return "AreaOfInterest{" +
-                "id=" + id +
+                "id=" + getId() +
                 '}';
     }
 }

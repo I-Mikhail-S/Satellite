@@ -1,30 +1,28 @@
 package org.example.entities;
 
-
 import org.example.specifications.DataSize;
-import org.example.specifications.TimeInterval;
 
 // Наземная станция, приёмник
-public class Station implements StationAndAreaOfInterest{
-    private int id; // Moscow - 1; Ekaterinburg - 2; Ulan-Ude - 3
+public class Station extends AbstractPointOnMap {
     private DataSize dataSize; // количество данных, которое станция примет за сеанс связи
-    private boolean flag; // у этой переменной очень тонкий смысл (руками не трогать!)
-
-    public Station() {
-    }
 
     public Station(int id) {
-        this.id = id;
+        super(id); // Moscow - 1; Ekaterinburg - 2; Ulan-Ude - 3
         this.dataSize = new DataSize(0);
-        this.flag = true;
     }
 
+    @Override
     public int getId() {
-        return id;
+        return super.getId();
     }
 
+    @Override
     public void setId(int id) {
-        this.id = id;
+        super.setId(id);
+    }
+
+    public boolean isFlag() { // потенциальное место доработки
+        return true; // в алгоритме не будет проходить проверку на посещённость точки
     }
 
     public DataSize getDataSize() {
@@ -36,19 +34,9 @@ public class Station implements StationAndAreaOfInterest{
     }
 
     @Override
-    public boolean isFlag() {
-        return flag;
-    }
-
-    @Override
-    public void setFlag(boolean flag) {
-        this.flag = flag;
-    }
-
-    @Override
     public String toString() {
         return "Station{" +
-                "id='" + id + '\'' +
+                "id='" + getId() + '\'' +
                 ", dataSize=" + dataSize +
                 '}';
     }

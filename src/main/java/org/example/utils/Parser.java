@@ -1,17 +1,17 @@
 package org.example.utils;
 
-import com.mysql.cj.conf.ConnectionUrlParser;
 import org.example.workWithDB.AllParser;
 
-import java.io.*;
-import java.util.*;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Parser implements AllParser {
-
-    private List<String> dateStart = new ArrayList<>();
-    private List<String> dateEnd = new ArrayList<>();
-    private List<String> name = new ArrayList<>();
-
+    private static final List<String> dateStart = new ArrayList<>();
+    private static final List<String> dateEnd = new ArrayList<>();
+    private static final List<String> name = new ArrayList<>();
     public static final int countSymbolsAll = 33;
 
     public List<String> getName() {
@@ -27,39 +27,32 @@ public class Parser implements AllParser {
     }
 
     @Override
-    public List<String> parse(String file) {
+    public List<String> parser(String txt) {
         List<String> all = new ArrayList<>();
-        try (BufferedReader br = new BufferedReader(new FileReader(file))) {
-            StringBuilder sb = new StringBuilder();
-            String line = br.readLine();
-            int count = 1;
-            while (line != null) {
-                if (count % 2 != 0 && line.isEmpty() != true) {
-                    sb.append(line);
-                    sb.append(System.lineSeparator());
+        try {
+            BufferedReader br = new BufferedReader(new FileReader(txt));
+            String line = String.valueOf(br.readLine());
+            for (int i = 0; line != null; i++) {
+                if (i % 2 == 0) {
                     all.add(line.substring(0, countSymbolsAll));
-                    line = br.readLine();
-                } else {
-                    line = br.readLine();
                 }
-                count++;
+                line = br.readLine();
             }
         } catch (IOException e) {
-            e.printStackTrace();
+            throw new RuntimeException(e);
         }
-
-        for (int i = 0; i < all.size(); i+=2) {
-            name.add(String.valueOf(all.get(i).charAt(32)));
-        }
-        for (int i = 0; i < all.size(); i++) {
-            if(i%2!=0){
-                dateEnd.add(all.get(i).substring(0, 19));
-            }
-            else{
-                dateStart.add(all.get(i).substring(0, 19));
-            }
-        }
+        getInformationForParser(all);
         return all;
+    }
+
+    public void getInformationForParser(List<String> all) {
+        for (int i = 0; i < all.size(); i++) {
+            if (i % 2 == 0) {
+                name.add(String.valueOf(all.get(i).charAt(32)));
+                dateStart.add(all.get(i).substring(0, 19));
+            } else
+                dateEnd.add(all.get(i).substring(0, 19));
+        }
     }
 
 }

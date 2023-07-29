@@ -1,5 +1,8 @@
-package org.example.entities;
+package org.example.algorithm;
 
+import org.example.entities.AreaOfInterest;
+import org.example.entities.Satellite;
+import org.example.entities.Station;
 import org.example.utils.DatabaseDAO;
 
 import java.sql.ResultSet;
